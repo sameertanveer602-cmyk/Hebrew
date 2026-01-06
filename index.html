@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hebrew RAG Playground</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">🇮🇱</span>
+                <h1>מערכת RAG בעברית</h1>
+            </div>
+            <div class="status-badge" id="api-status">
+                <span class="dot"></span> בודק חיבור...
+            </div>
+        </header>
+
+        <main>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('search')">חיפוש (Search)</button>
+                <button class="tab-btn" onclick="switchTab('chat')">צ'אט (Chat)</button>
+                <button class="tab-btn" onclick="switchTab('upload')">העלאה (Upload)</button>
+            </div>
+
+            <!-- Search Section -->
+            <section id="search-section" class="content-section active">
+                <div class="search-box glass">
+                    <input type="text" id="search-input"
+                        placeholder="שאל שאלה על המסמכים (לדוגמה: מהן דרישות הסימון?)...">
+                    <button onclick="performSearch()" id="search-btn">חפש</button>
+                    <div class="loading-spinner" id="search-loader"></div>
+                </div>
+                <div id="search-results" class="results-area">
+                    <div class="empty-state">הזן שאלה לקבלת תשובה מבוססת מסמכים</div>
+                </div>
+            </section>
+
+            <!-- Chat Section -->
+            <section id="chat-section" class="content-section">
+                <div class="chat-container glass">
+                    <div id="chat-messages" class="chat-messages">
+                        <div class="message system">שלום! אני העוזר החכם שלך. על מה נדבר היום?</div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="כתוב הודעה כאן..."
+                            onkeypress="handleChatKey(event)">
+                        <button onclick="sendChatMessage()" id="chat-btn">שלח</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upload Section -->
+            <section id="upload-section" class="content-section">
+                <div class="upload-area glass">
+                    <div class="upload-dropzone" id="dropzone" onclick="document.getElementById('file-input').click()">
+                        <div class="upload-icon">📄</div>
+                        <h3>גרור קבצי PDF לכאן או לחץ לבחירה</h3>
+                        <p>הקבצים יעובדו ויתווספו לבסיס הידע של המערכת</p>
+                        <input type="file" id="file-input" accept=".pdf" style="display: none"
+                            onchange="handleFileSelect(event)">
+                    </div>
+                    <div id="upload-status-area" class="results-area">
+                        <!-- Upload status will appear here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

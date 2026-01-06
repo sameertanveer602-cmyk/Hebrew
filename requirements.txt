@@ -1,0 +1,12 @@
+pypdf
+sentence-transformers
+google-generativeai
+faiss-cpu
+torch
+pandas
+python-dotenv
+pdfplumber
+groq
+fastapi
+uvicorn
+python-multipart
